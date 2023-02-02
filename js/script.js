@@ -6,7 +6,7 @@ const apiKey = '0b3e4f59cef0c9aa37eaa33ae06633d0';
 //function for populating the whole screen with weather info
 function weatherDays(userInput) {
     
-    const queryUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + userInput + '&limit=5&appid=' + apiKey + '&units=metric';
+    const queryUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + userInput + '&limit=5&appid=' + apiKey + '&units=metric';
     
     //Call Geocoding API when search form is submitted to find city lat and long value
     $.ajax({ url: queryUrl })
