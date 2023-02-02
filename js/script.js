@@ -6,7 +6,7 @@ const apiKey = '0b3e4f59cef0c9aa37eaa33ae06633d0';
 //function for populating the whole screen with weather info
 function weatherDays(userInput) {
     
-    const queryUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + userInput + '&limit=5&appid=' + apiKey + '&units=metric';
+    const queryUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + userInput + '&limit=5&appid=' + apiKey + '&units=metric';
     
     //Call Geocoding API when search form is submitted to find city lat and long value
     $.ajax({ url: queryUrl })
@@ -14,7 +14,7 @@ function weatherDays(userInput) {
             const lat = response[0].lat;
             const lon = response[0].lon;
 
-            const weatherQueryUrl = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey + '&units=metric';
+            const weatherQueryUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey + '&units=metric';
             $('#today').empty();
             //Call 5 day weather forecast API after we have city lat and long value
             $.ajax({ url: weatherQueryUrl })
