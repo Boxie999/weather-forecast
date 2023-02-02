@@ -1,17 +1,12 @@
+//gets items from local storage
 const history = JSON.parse(localStorage.getItem('history')) || [];
 const apiKey = '0b3e4f59cef0c9aa37eaa33ae06633d0';
 // var userInput;
 
-
+//function for populating the whole screen with weather info
 function weatherDays(userInput) {
     
     const queryUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + userInput + '&limit=5&appid=' + apiKey + '&units=metric';
-    
-
-   
-
-    
-    
     
     //Call Geocoding API when search form is submitted to find city lat and long value
     $.ajax({ url: queryUrl })
@@ -28,7 +23,7 @@ function weatherDays(userInput) {
                     const weatherList = weatherResponse.list;
                     //forecast for today
                     const today = weatherList[0];
-                     
+                     //dinamically creating text and div for the weather info
                      var cityName = $('<h1>').text(weatherResponse.city.name).css('font-size', '60px');
                      var description = $('<h4>').text(today.weather[0].description);
                      var todaysDate = $('<h4>').text(today.dt_txt.slice(0, 10));
@@ -46,7 +41,7 @@ function weatherDays(userInput) {
                     for (let i = 1; i < weatherList.length; i += 8) {
                         const weather = weatherList[i];
                         
-                        
+                        //dinamically creating div and text for the weather info
                         var date = $('<h4>').text(weather.dt_txt.slice(0, 10));
                         var iconCode = weather.weather[0].icon;
                         var icon = $('<img>').attr('src', "http://openweathermap.org/img/w/" +iconCode+ ".png").css('width', '30px');
@@ -63,8 +58,9 @@ function weatherDays(userInput) {
                      
                     });                       
                 };
-
+            //dinamically creating buttons
             function createButtons(userInput) {
+
                 history.push(userInput);
                 localStorage.setItem('history', JSON.stringify(history));
                 var btnNew = $('<button>').text(userInput);
@@ -74,7 +70,7 @@ function weatherDays(userInput) {
             }
     
     
-    
+        //calling the createButtons and weatherDays function once the user submits
         $('#search-form').on('submit', function(event) {
         event.preventDefault();
         const userInput = $('#search-input').val().trim();
@@ -82,7 +78,7 @@ function weatherDays(userInput) {
         createButtons(userInput);
         
     });
-    
+    //rendering buttons
     function renderButtons(){
         for(i=0; i<history.length; i++) {
             var btnNew = $('<button>').text(history[i]);
@@ -91,16 +87,14 @@ function weatherDays(userInput) {
             $('#history').prepend(btnNew);  
         }
     }
+    //calling the renderButtons function
     renderButtons()
-
+    //click function on the buttons with the weatherInfos class, so it shows value when clicked
     $(document).on('click', '.weatherInfos', function(){
         console.log('Clicked button.');  
         var thisBtn = $(this).attr("data-name");
-        console.log(thisBtn); //shows city name
-        // thisBtn = userInput;
         weatherDays(thisBtn);
     }); 
-
 
 
 
