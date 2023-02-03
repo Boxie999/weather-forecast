@@ -13,3 +13,4 @@ URL for the deployed application:
 https://boxie999.github.io/weather-forecast/
 
 Screenshot of the application:
+<img width="1267" alt="Screenshot 2023-02-02 at 22 16 08" src="https://user-images.githubusercontent.com/118014637/216598523-cf23a1ce-6d5a-4439-8683-14e94f0ecfcf.png">
